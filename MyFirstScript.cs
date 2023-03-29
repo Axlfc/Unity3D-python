@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 public class MyFirstScript : MonoBehaviour {
-    // Variables
+    // Variables Declaration
     float life;
     float jumpForce;
     string playerName;
@@ -16,22 +16,21 @@ public class MyFirstScript : MonoBehaviour {
     float zPos;
 
 
-
     void ChangePosition(float destination_xPos, float destination_yPos, float destination_zPos) {
         transform.position = new Vector3(destination_xPos, destination_yPos, destination_zPos);
     }
 
-    void ChangePositionx(float destination_xPos)
+    void ChangePositionX(float destination_xPos)
     {
         transform.position = new Vector3(destination_xPos, transform.position.y, transform.position.z);
     }
 
-    void ChangePositiony(float destination_yPos)
+    void ChangePositionY(float destination_yPos)
     {
         transform.position = new Vector3(transform.position.x, destination_yPos, transform.position.z);
     }
 
-    void ChangePositionz(float destination_zPos)
+    void ChangePositionZ(float destination_zPos)
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, destination_zPos);
     }
@@ -59,8 +58,7 @@ public class MyFirstScript : MonoBehaviour {
 
 
     // Description: Run local python script file
-    void RunLocalPythonFile(string filePath)
-    {
+    void RunLocalPythonFile(string filePath) {
         Process process = new Process();
         process.StartInfo.FileName = "python";
         process.StartInfo.Arguments = filePath;
@@ -77,8 +75,7 @@ public class MyFirstScript : MonoBehaviour {
 
 
     // Description: Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // print($"The name of the player is:\t{playerName}");
         // print("The value of life is:\t" + life);
         // print("The jump force is:\t", jumpForce);
