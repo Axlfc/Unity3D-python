@@ -198,7 +198,7 @@ public class ActivateObject : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log($"SPACE");
-            //ActivateGameObjectExclusive(cubeLight);
+            // ActivateGameObjectExclusive(cubeLight);
         }
         else if (Input.GetKeyDown(KeyCode.Return)) {
             Debug.Log($"RETURN");
