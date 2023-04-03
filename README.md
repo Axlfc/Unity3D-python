@@ -6,5 +6,5 @@ Set Unity3D project python as PyCharm interpreter.
 `C:\Users\MyUserName\UnityProjectName\Library\PythonInstall\python.exe`
 
 TODO: 
-- Test all ActivateObject.cs, CreateObjects.cs, ActivateObject, MyCollision.cs & Components.cs functions.
+- Test all ActivateObject.cs, CreateObjects.cs, ActivateObject.cs, MyCollision.cs & Components.cs functions.
 - Recognize UnityEngine library in PyCharm...
