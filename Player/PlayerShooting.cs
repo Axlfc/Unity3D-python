@@ -34,6 +34,9 @@ public class PlayerShooting : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Handles shooting behavior, including creating a visible line from the shooter to the target.
+    /// </summary>
     void Shoot() {
         // reset timer
         timer = 0;
@@ -47,8 +50,14 @@ public class PlayerShooting : MonoBehaviour {
         ray.direction = transform.forward;
 
         if (Physics.Raycast(ray, out hit, range, shootableMask)) {
-            // I will take life from the enemy
-            Debug.Log("I shot something")
+            // Save in a local variable the gameobject we are hitting
+            GameObject _object = hit.collider.gameObject;
+            // Check if the gameobject is the enemy
+            if (_object.GetComponent<EnemyHealth>()) {
+                _object.GetComponent<EnemyHealth>().TakeDamage(damagePerShot);
+            }
+
+
             lineRenderer.SetPosition(1, hit.point);
         } else lineRenderer.SetPosition(1, ray.origin + (ray.direction * range));  // set the second point of the lineRenderer to a range distance from the raycast origin
     }
