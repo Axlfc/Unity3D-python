@@ -20,6 +20,7 @@ public class PlayerShooting : MonoBehaviour {
     Ray ray;
     RaycastHit hit;
     LineRenderer lineRenderer;
+    AudioSource audioSource;
     Light gunShotLight;
     float effectsDisplayTime = 0.2f;  // variable that will determine how long the effects will be on the screen
 
@@ -29,6 +30,7 @@ public class PlayerShooting : MonoBehaviour {
     /// </summary>
     void InitializeVariables() {
         lineRenderer = GetComponent<LineRenderer>();
+        audioSource = GetComponent<AudioSource>();
         gunShotLight = GetComponent<Light>();
     }
 
@@ -42,11 +44,14 @@ public class PlayerShooting : MonoBehaviour {
 
 
     /// <summary>
-    /// Handles shooting behavior, including creating a visible line from the shooter to the target.
+    /// Handles shooting behavior, including creating a visible line from the shooter to the target and playing audio.
     /// </summary>
     void Shoot() {
         // reset timer
         timer = 0;
+
+        audioSource.Play();
+
         // we enable the LineRenderer component and the Point Light
         lineRenderer.enabled = true;
         gunShotLight.enabled = true;
@@ -61,7 +66,7 @@ public class PlayerShooting : MonoBehaviour {
             GameObject _object = hit.collider.gameObject;
             // Check if the gameobject is the enemy
             if (_object.GetComponent<EnemyHealth>()) {
-                _object.GetComponent<EnemyHealth>().TakeDamage(damagePerShot);
+                _object.GetComponent<EnemyHealth>().TakeDamage(damagePerShot, hit.point);
             }
 
 

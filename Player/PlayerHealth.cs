@@ -28,9 +28,14 @@ public class PlayerHealth : MonoBehaviour {
     [Tooltip("The GameManager that controls the game.")]
     public GameManager gameManager;
 
+    [Header("Audio")]
+    [Tooltip("The sound clip that will play when the player dies.")]
+    public AudioClip deathClip;
+
     Animator anim;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
+    AudioSource audioSource;
     bool isDead;
     bool damaged;
 
@@ -47,6 +52,7 @@ public class PlayerHealth : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -65,6 +71,8 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int amount) {
         if (isDead) return;  // if the player dies the function is exited
 
+        audioSource.Play();
+
         damaged = true;
         currentHealth -= amount;
         slider.value = currentHealth;
@@ -78,6 +86,9 @@ public class PlayerHealth : MonoBehaviour {
     /// This function handles the death of the player. It sets the isDead flag to true, triggers the death animation and disables the PlayerMovement and PlayerShooting components.
     /// </summary>
     void Death() {
+        audioSource.clip = deathClip;
+        audioSource.Play();
+
         isDead = true;
         anim.SetTrigger("Death");
 
