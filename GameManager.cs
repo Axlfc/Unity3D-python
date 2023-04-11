@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Score")]
     [Tooltip("The text component that displays the current score")]
-    public TextMeshProGUI textScore;
+    public TextMeshProUGUI textScore;
 
     [Header("Array Positions")]
     [Tooltip("The array of empty objects placed in the scene where enemies will spawn")]
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
     /// Adds the given scoreValue to the current score, and updates the text score display accordingly.
     /// </summary>
     /// <param name="scoreValue">The amount of score to add.</param>
-    public voide ScoreEnemy(int scoreValue) {
+    public void ScoreEnemy(int scoreValue) {
         score += scoreValue;
         textScore.text = "Score: " + score.ToString();
     }
