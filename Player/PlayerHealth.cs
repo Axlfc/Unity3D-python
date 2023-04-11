@@ -4,15 +4,29 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
+    [Header("Health")]
+    [Tooltip("The maximum health of the player.")]
     public float maxHealth;
+    [Tooltip("The current health of the player.")]
     public float currentHealth;
 
+    [Header("UI")]
+    [Tooltip("The slider that displays the player's health.")]
     public Slider slider;
+    [Tooltip("The image that appears when the player takes damage.")]
     public Image damageImage;
+    [Tooltip("The image that displays the player's health.")]
     public Image healthImage;
 
-    public float flashSpeed;  // the speed at which the image will disappear
+    [Header("Damage Flash")]
+    [Tooltip("The speed at which the damage image will disappear.")]
+    public float flashSpeed;
+    [Tooltip("The color of the damage image when the player takes damage.")]
     public Color flashColor;
+
+    [Header("Game Manager")]
+    [Tooltip("The GameManager that controls the game.")]
+    public GameManager gameManager;
 
     Animator anim;
     PlayerMovement playerMovement;
@@ -44,7 +58,10 @@ public class PlayerHealth : MonoBehaviour {
     }
 
 
-    // public function that I am going to call from the enemy's script
+    /// <summary>
+    /// This function is called when the player takes damage.
+    /// </summary>
+    /// <param name="amount">The amount of damage taken.</param>
     public void TakeDamage(int amount) {
         if (isDead) return;  // if the player dies the function is exited
 
@@ -57,6 +74,9 @@ public class PlayerHealth : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// This function handles the death of the player. It sets the isDead flag to true, triggers the death animation and disables the PlayerMovement and PlayerShooting components.
+    /// </summary>
     void Death() {
         isDead = true;
         anim.SetTrigger("Death");
@@ -81,9 +101,10 @@ public class PlayerHealth : MonoBehaviour {
     }
 
 
-    // Public function that goes as an event in the animation of Death
+    /// <summary>
+    /// This public function is called as an event in the Death animation. It calls the GameOver function of the GameManager to restart the level.
+    /// </summary>
     public void RestartLevel() {
-        Debug.Log("GAME OVER");
-        // Game Over
+        gameManager.GameOver();
     }
 }

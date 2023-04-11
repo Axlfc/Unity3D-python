@@ -4,10 +4,23 @@ using UnityEngine.AI;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
-    public int maxHealth;  // max enemy health
+    [Header("Health")]
+    [Tooltip("The maximum health of the enemy")]
+    public int maxHealth;
+
+    [Tooltip("The current health of the enemy")]
     public int currentHealth;
-    public float sinkSpeed;  // enemy sink speed
-    public int scoreValue;  // the points that will be given to the player once the enemy has been destroyed
+
+    [Header("Sinking")]
+    [Tooltip("The speed at which the enemy sinks into the ground when it dies")]
+    public float sinkSpeed;
+
+    [Header("Score")]
+    [Tooltip("The number of points awarded to the player when this enemy is destroyed")]
+    public int scoreValue;
+
+    [Header("Status")]
+    [Tooltip("Indicates whether the enemy is currently dead")]
     public bool isDead;
 
     Animator anim;
@@ -53,11 +66,12 @@ public class EnemyHealth : MonoBehaviour {
 
 
     /// <summary>
-    /// Sets the character to a dead state and triggers the death animation.
+    /// Called when the player dies. Sets the isDead flag to true, triggers the Death animation and sends the score value to the GameManager's ScoreEnemy function.
     /// </summary>
     void Death() {
         isDead = true;
         anim.SetTrigger("Death");
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().ScoreEnemy(scoreValue);
 
     }
 

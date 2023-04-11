@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    [Header("Player Movement")]
+    [Tooltip("Movement speed of the player")]
     public int speed;
-    public LayerMask layerFloor;  // layer where the floor of the scene will be
+
+    [Header("Floor Layer")]
+    [Tooltip("The layer where the floor of the scene is placed")]
+    public LayerMask layerFloor;
 
     Rigidbody rb;
     Animator anim;

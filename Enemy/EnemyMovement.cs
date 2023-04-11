@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour {
     GameObject player;
     NavMeshAgent agent;
     Animator anim;
+    EnemyHealth enemyHealth;
 
 
     /// <summary>
@@ -16,6 +17,7 @@ public class EnemyMovement : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
 
@@ -41,7 +43,7 @@ public class EnemyMovement : MonoBehaviour {
     /// Called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update() {
-        if (player != null) {
+        if (player != null && enemyHealth.isDead == false) {
             agent.SetDestination(player.transform.position);
         }
         Animating();

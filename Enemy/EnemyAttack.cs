@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour {
+    [Header("Enemy Attack Settings")]
+    [Tooltip("The time between each attack")]
     public float timeBetweenAttacks;
+
+    [Tooltip("The amount of damage dealt by the enemy")]
     public int attackDamage;
 
     GameObject player;

@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
-    // This is going to be added as a Component in an empty GameObject in the tip of the gun of the player.
-    public int damagePerShot;  // damage per shot that the player will do
-    public float timeBetweenBullets;  // time between shots
-    public float range;  // raycast length, which really means how far the player can shoot
-    public LayerMask shootableMask;  // layer of objects to which we are going to be able to shoot
+    [Header("Shooting Settings")]
+    [Tooltip("Damage per shot that the player will do")]
+    public int damagePerShot;
+
+    [Tooltip("Time between shots")]
+    public float timeBetweenBullets;
+
+    [Tooltip("Raycast length, which really means how far the player can shoot")]
+    public float range;
+
+    [Tooltip("Layer of objects to which we are going to be able to shoot")]
+    public LayerMask shootableMask;
 
     float timer;  // variable that I am going to use as a time counter
     Ray ray;
